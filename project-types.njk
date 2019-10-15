@@ -1,0 +1,26 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: project_type
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+    - projects
+    - projectTypesList
+  addAllPagesToCollections: true
+layout: layouts/home.njk
+renderData:
+  title: Tagged “{{ project_type }}”
+permalink: /project-types/{{ project_type }}/
+---
+<h1>Tagged “{{ project_type }}”</h1>
+
+{# {% set postslist = projects[ tag ] %} #}
+{% set projectslist = collections.projects | where("data.project_types", project_type ) %}
+{% include "projectslist.njk" %}
+
+<p>See <a href="{{ '/project-types/' | url }}">all project types</a>.</p>
